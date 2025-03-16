@@ -36,13 +36,12 @@ const StudentDashboard: React.FC = () => {
   const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
   const [isUpdating, setIsUpdating] = useState(false);
   const { token } = useAuth();
-
   const fetchAttendanceHistory = useCallback(async () => {
     if (isUpdating) return;
     setIsUpdating(true);
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/attendance/my-attendance",
+        "https://backend-8a8j.onrender.com/api/attendance/my-attendance",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -83,7 +82,7 @@ const StudentDashboard: React.FC = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        'http://localhost:5000/api/attendance/mark',
+        'https://backend-8a8j.onrender.com/api/attendance/mark',
         { qrCode: decodedText },
         { headers: { Authorization: `Bearer ${token}` } }
       );
